@@ -1,0 +1,17 @@
+note over browser:
+When user submits new note, JS code
+that is being executed in the browser
+takes care of updating the DOM with the 
+new note by executing redrawNotes
+browser also sends AJAX POST request 
+to server in order to persist new note 
+in DB
+end note
+browser->server: HTTP POST\nhttps://fullstack-exampleapp.herokuapp.com/new_note_spa
+note over server:
+server persists the new note
+end note
+server-->browser: 201 created JSON
+note over browser:
+JS code to console log the body of the response
+end note
