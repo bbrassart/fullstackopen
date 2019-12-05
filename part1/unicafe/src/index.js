@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 
 const Statistics = ({clicks}) => {
   const { good, neutral, bad, total } = clicks;
+
+  if (!total) {
+    return (
+      <p>No Feedback given</p>
+    );
+  }
+
   const getAverage = () => total ? (good - bad) / total : 0;
   const getPositivePercentage = () => total ? (good / total) * 100 : 0;
 
