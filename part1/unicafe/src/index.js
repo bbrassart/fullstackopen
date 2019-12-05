@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+const Statistic = ({text, value}) => {
+  return (
+    <p>{text} {value}</p>
+  );
+};
+
 const Statistics = ({clicks}) => {
   const { good, neutral, bad, total } = clicks;
 
@@ -16,15 +22,21 @@ const Statistics = ({clicks}) => {
   return (
     <div>
       <h2>statistics</h2>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
+      <Statistic text="good" value={good} />
+      <Statistic text="neutral" value={neutral} />
+      <Statistic text="bad" value={bad} />
+      <Statistic text="all" value={total} />
       <p>average {getAverage()}</p>
       <p>positive {getPositivePercentage()} %</p>
     </div>
   );
 }
+
+const Button = ({increase, text}) => {
+  return (
+    <button onClick={() => increase(text)}>{text}</button>
+  );
+};
 
 const App = () => {
   const [clicks, setClicks] = useState({
@@ -47,9 +59,9 @@ const App = () => {
   return (
     <div>
       <h2>give feedback</h2>
-      <button onClick={() => increase('good')}>good</button>
-      <button onClick={() => increase('neutral')}>neutral</button>
-      <button onClick={() => increase('bad')}>bad</button>
+      <Button increase={increase} text="good" />
+      <Button increase={increase} text="neutral" />
+      <Button increase={increase} text="bad" />
       <Statistics clicks={clicks} />
   </div>
   );
