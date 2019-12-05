@@ -17,10 +17,17 @@ const App = ({anecdotes}) => {
 
   return (
     <div>
-      <p>{ anecdotes[selected] } has {votes[selected]} votes</p>
       <div>
-        <button onClick={voteForAnecdote}>vote</button>
-        <button onClick={randomizeAnecdote}>next anecdote</button>
+        <h2>Anecdote of the day</h2>
+        <p>{ anecdotes[selected] } has {votes[selected]} votes</p>
+        <div>
+          <button onClick={voteForAnecdote}>vote</button>
+          <button onClick={randomizeAnecdote}>next anecdote</button>
+        </div>
+      </div>
+      <div>
+        <h2>Anecdote with most votes</h2>
+        <p>{ anecdotes[votes.indexOf(Math.max(...votes))] }</p>
       </div>
     </div>
   );
