@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 
 const Statistic = ({text, value}) => {
   return (
-    <p>{text} {value}</p>
+    <>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
+    </>
   );
 };
 
@@ -22,12 +27,23 @@ const Statistics = ({clicks}) => {
   return (
     <div>
       <h2>statistics</h2>
-      <Statistic text="good" value={good} />
-      <Statistic text="neutral" value={neutral} />
-      <Statistic text="bad" value={bad} />
-      <Statistic text="all" value={total} />
-      <p>average {getAverage()}</p>
-      <p>positive {getPositivePercentage()} %</p>
+      <table>
+        <tbody>
+          <Statistic text="good" value={good} />
+          <Statistic text="neutral" value={neutral} />
+          <Statistic text="bad" value={bad} />
+          <Statistic text="all" value={total} />
+          <tr>
+            <td>average </td>
+            <td>{getAverage()}</td>
+          </tr>
+          <tr>
+            <td>positive </td>
+            <td>{getPositivePercentage()}</td>
+            <td> %</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
