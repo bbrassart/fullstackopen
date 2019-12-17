@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Filter from './components/Filter';
+import Persons from './components/Persons';
+import PersonForm from './components/PersonForm';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -25,10 +28,6 @@ const App = () => {
 
   const isDuplicate = userInput => persons.some(person => person.name === userInput);
 
-  const renderContacts = persons => {
-    return persons.map(person => <li key={person.name}>{person.name} {person.number}</li>);
-  };
-
   const filteredContacts =
     persons.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -49,36 +48,19 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with:
-        <input
-          value={searchTerm}
-          onChange={handleSearchTermChange}>
-        </input>
-      </div>
+      <Filter searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
       <h3>Add a new</h3>
-      <form onSubmit={addContact}>
-        <div>
-          name:
-          <input
-            value={newName}
-            onChange={handleNameChange}
-          />
-        </div>
-        <div>number:
-          <input
-            value={newNumber}
-            onChange={handleNumberChange}
-          />
-        </div>
-       <button type="submit">add</button>
-      </form>
-      <h2>Numbers</h2>
-      <ul>
-        { renderContacts(filteredContacts) }
-      </ul>
+      <PersonForm
+        addContact={addContact}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange}
+      />
+      <h3>Numbers</h3>
+      <Persons persons={filteredContacts} />
     </div>
-  )
+  );
 };
 
 export default App;
