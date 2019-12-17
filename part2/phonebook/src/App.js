@@ -10,10 +10,17 @@ const App = () => {
     setNewName(event.target.value);
   };
 
+  const isDuplicate = userInput => persons.some(person => person.name === userInput);
   const renderNames = persons => persons.map(person => <li key={person.name}>{person.name}</li>);
 
   const addName = (event) => {
     event.preventDefault();
+
+    if (isDuplicate(newName)) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
+
     const newPersonObject = { name: newName };
     setPersons(persons.concat(newPersonObject));
     setNewName('');
