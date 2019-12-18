@@ -22,10 +22,13 @@ const FullCountry = ({country}) => {
   );
 };
 
-const MinimalCountry = ({country}) => {
+const MinimalCountry = ({country, forceSearchTermChange}) => {
   return (
     <li>
       {country.name}
+      <button onClick={event => forceSearchTermChange(event, country.name)}>
+        Show
+      </button>
     </li>
   )
 };
@@ -46,6 +49,10 @@ const App = () => {
       })
   };
 
+  const forceSearchTermChange = (event, name) => {
+    setSearchTerm(name);
+  };
+
   useEffect(hook, []);
 
   const filteredCountries =
@@ -56,7 +63,16 @@ const App = () => {
       return <FullCountry country={countries[0]} />;
     }
     return (
-      <ul>{ countries.map(country => <MinimalCountry key={country.name} country={country} />) }</ul>
+      <ul>
+        {
+          countries.map(country => {
+            return <MinimalCountry
+              forceSearchTermChange={forceSearchTermChange}
+              key={country.name}
+              country={country} />
+          })
+        }
+      </ul>
     );
   };
 
