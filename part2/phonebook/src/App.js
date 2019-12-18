@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Filter from './components/Filter';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
+import Notification from './components/Notiifcation';
 import { getAllPersons, createPerson, deletePerson, updatePerson } from './helpers/personsHelper';
 
 const App = () => {
@@ -18,12 +19,14 @@ const App = () => {
   const [ newName, setNewName ] = useState('');
   const [ searchTerm, setSearchTerm ] = useState('');
   const [ newNumber, setNewNumber ] = useState('');
+  const [message, setMessage] = useState(null);
 
-  const handlePersonDeletion = id => {
+  const handlePersonDeletion = ({id, name}) => {
     deletePerson(id)
       .then(() => {
         const peopleList = persons.filter(person => person.id !== id);
         setPersons(peopleList);
+        notifyUser(`${name} has been deleted from phonebook`);
       });
   };
 
@@ -44,6 +47,13 @@ const App = () => {
     setNewNumber('');
   };
 
+  const notifyUser = message => {
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+  };
+
   const filteredContacts =
     persons.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -60,6 +70,7 @@ const App = () => {
       updatePerson(id, newPerson)
         .then(response => {
           setPersons(persons.map(person => person.id !== id ? person : response));
+          notifyUser(`${newPerson.name} phone number has been modified`);
           resetUserInputs();
         });
       return;
@@ -68,6 +79,7 @@ const App = () => {
     createPerson({ name: newName, number: newNumber })
       .then(newPerson => {
         setPersons(persons.concat(newPerson));
+        notifyUser(`${newPerson.name} has been added to phonebook`);
         resetUserInputs();
       });
   };
@@ -75,6 +87,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
       <h3>Add a new</h3>
       <PersonForm
