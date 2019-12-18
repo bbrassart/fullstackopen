@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Filter from './components/Filter';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
-import { getAllPersons, createPerson, deletePerson } from './helpers/personsHelper';
+import { getAllPersons, createPerson, deletePerson, updatePerson } from './helpers/personsHelper';
 
 const App = () => {
   const hook = () => {
@@ -39,24 +39,36 @@ const App = () => {
     setNewNumber(event.target.value);
   };
 
-  const isDuplicate = userInput => persons.some(person => person.name === userInput);
+  const resetUserInputs = () => {
+    setNewName('');
+    setNewNumber('');
+  };
 
   const filteredContacts =
     persons.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const addContact = (event) => {
     event.preventDefault();
+    const existingPerson = persons.find(person => person.name === newName);
 
-    if (isDuplicate(newName)) {
-      alert(`${newName} is already added to phonebook`);
+    const message =
+      `${newName} is already added to phonebook, replace the old number with the new one?`;
+
+    if (existingPerson && window.confirm(message)) {
+      const { id } = existingPerson;
+      const newPerson = { ...existingPerson, number: newNumber };
+      updatePerson(id, newPerson)
+        .then(response => {
+          setPersons(persons.map(person => person.id !== id ? person : response));
+          resetUserInputs();
+        });
       return;
     }
 
     createPerson({ name: newName, number: newNumber })
       .then(newPerson => {
         setPersons(persons.concat(newPerson));
-        setNewName('');
-        setNewNumber('');
+        resetUserInputs();
       });
   };
 
