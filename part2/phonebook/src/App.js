@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Filter from './components/Filter';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
-import { getAllPersons, createPerson } from './helpers/personsHelper';
+import { getAllPersons, createPerson, deletePerson } from './helpers/personsHelper';
 
 const App = () => {
   const hook = () => {
@@ -18,6 +18,14 @@ const App = () => {
   const [ newName, setNewName ] = useState('');
   const [ searchTerm, setSearchTerm ] = useState('');
   const [ newNumber, setNewNumber ] = useState('');
+
+  const handlePersonDeletion = id => {
+    deletePerson(id)
+      .then(() => {
+        const peopleList = persons.filter(person => person.id !== id);
+        setPersons(peopleList);
+      });
+  };
 
   const handleNameChange = (event) => {
     setNewName(event.target.value);
@@ -65,7 +73,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons persons={filteredContacts} />
+      <Persons handlePersonDeletion={handlePersonDeletion} persons={filteredContacts} />
     </div>
   );
 };

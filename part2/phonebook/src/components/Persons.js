@@ -1,8 +1,23 @@
 import React from 'react';
 
-const Persons = ({persons}) => {
+const Persons = ({persons, handlePersonDeletion}) => {
+  const deletePerson = ({name, id}) => {
+    if(window.confirm(`Delete ${name} ?`)) {
+      handlePersonDeletion(id);
+    }
+  };
+
   const renderContacts = persons => {
-    return persons.map(person => <li key={person.name}>{person.name} {person.number}</li>);
+    return persons.map(person => {
+      return (
+        <li key={person.name}>
+          {person.name} {person.number}
+          <button onClick={() => deletePerson(person)}>
+            Delete
+          </button>
+        </li>
+      );
+    });
   };
 
   return (
