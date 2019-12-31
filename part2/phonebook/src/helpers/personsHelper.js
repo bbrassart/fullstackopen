@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:3001/persons';
+const baseUrl = 'http://localhost:3001/api/persons';
 const getAllPersons = () => axios.get(baseUrl).then(resp => resp.data);
 const deletePerson = (id) => axios.delete(`${baseUrl}/${id}`);
 const createPerson = (personObject) => axios.post(baseUrl, personObject).then(resp => resp.data);
