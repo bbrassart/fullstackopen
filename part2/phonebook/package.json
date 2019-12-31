@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build:ui": "rm -rf build && cd ../../part2/phonebook && npm run build --prod && cp -r build ../../../fullstackopen_backend/",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -20,6 +21,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "https://secret-badlands-77197.herokuapp.com/",
   "browserslist": {
     "production": [
       ">0.2%",
