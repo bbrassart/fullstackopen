@@ -88,6 +88,10 @@ const App = () => {
         setPersons(persons.concat(newPerson));
         notifyUser(`${newPerson.name} has been added to phonebook`, 'success');
         resetUserInputs();
+      })
+      .catch(error => {
+        notifyUser(error.response.data.error, 'error');
+        resetUserInputs();
       });
   };
 
