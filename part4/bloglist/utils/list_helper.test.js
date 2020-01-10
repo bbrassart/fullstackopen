@@ -40,10 +40,8 @@ describe('#favoriteBlog', () => {
     };
 
     const blogs = [ singleBlogpost ];
-
     expect(listHelper.favoriteBlog(blogs)).toEqual(singleBlogpost);
   });
-
 
   test('of a bigger list returns the properties of the most liked blogpost', () => {
     const firstBlogpost = {
@@ -56,7 +54,6 @@ describe('#favoriteBlog', () => {
       likes: 98,
       author: 'Matt',
       title: 'Maggie'
-
     };
 
     const thirdBlogpost = {
@@ -66,7 +63,26 @@ describe('#favoriteBlog', () => {
     };
 
     const blogs = [ firstBlogpost, secondBlogpost, thirdBlogpost ];
-
     expect(listHelper.favoriteBlog(blogs)).toEqual(secondBlogpost);
   });
 });
+
+describe('#mostBlogs', () => {
+  test('of empty list is 0', () => {
+    expect(listHelper.mostBlogs([])).toBe(null);
+  });
+
+  test('of a bigger list returns most prolific author and its number of publications', () => {
+    const blogs = [
+      { author: 'Albert' },
+      { author: 'Robert C. Martin' },
+      { author: 'Robert C. Martin' },
+      { author: 'Diego' }
+    ];
+
+    const expectedResult = { author: 'Robert C. Martin', blogs: 2 };
+    expect(listHelper.mostBlogs(blogs)).toEqual(expectedResult);
+  });
+});
+
+
