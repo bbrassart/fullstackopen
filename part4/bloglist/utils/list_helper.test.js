@@ -85,4 +85,21 @@ describe('#mostBlogs', () => {
   });
 });
 
+describe('#mostLikes', () => {
+  test('of empty list is 0', () => {
+    expect(listHelper.mostLikes([])).toBe(null);
+  });
 
+  test('of a bigger list returns most liked author and his number of likes', () => {
+    const blogs = [
+      { author: 'Diego', likes: 10 },
+      { author: 'Albert', likes: 5 },
+      { author: 'Robert C. Martin', likes: 8 },
+      { author: 'Robert C. Martin', likes: 10 },
+      { author: 'Diego', likes: 25 }
+    ];
+
+    const expectedResult = { author: 'Diego', likes: 25 + 10 };
+    expect(listHelper.mostLikes(blogs)).toEqual(expectedResult);
+  });
+});
