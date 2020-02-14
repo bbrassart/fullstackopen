@@ -24,6 +24,12 @@ describe('#get', () => {
       .expect(200)
       .expect('Content-Type', /application\/json/);
   });
+
+  test('each and every contains a single id property, no more __id property', async () => {
+    const response = await api.get('/api/blogs');
+    expect(response.body[0].id).toBeDefined();
+    expect(response.body[0].__id).not.toBeDefined();
+  });
 });
 
 afterAll(() => {
