@@ -33,34 +33,13 @@ describe('#get', () => {
 });
 
 describe('#post', () => {
-  test('a valid blogpost can be added ', async () => {
-    const newBlog = {
-      title: 'Le Monde',
-      author: 'Jean Marc',
-      url: 'https://lemonde.fr',
-      likes: 78
-    };
-
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(201)
-      .expect('Content-Type', /application\/json/);
-
-    const response = await api.get('/api/blogs');
-    const authors = response.body.map(r => r.author);
-
-    expect(response.body.length).toBe(helper.initialBlogs.length + 1);
-    expect(authors).toContain('Jean Marc');
-  });
-
-  describe('if incoming blogpost body DOES contain a likes property', () => {
-    test('it sets likes field based on the body definition', async () => {
+  describe('when incoming blogpost is valid', () => {
+    test('a valid blogpost can be added ', async () => {
       const newBlog = {
-        title: 'foo',
-        author: 'bar',
-        likes: 123,
-        url: 'https://foo.bar'
+        title: 'Le Monde',
+        author: 'Jean Marc',
+        url: 'https://lemonde.fr',
+        likes: 78
       };
 
       await api
@@ -70,28 +49,93 @@ describe('#post', () => {
         .expect('Content-Type', /application\/json/);
 
       const response = await api.get('/api/blogs');
-      const newBlogInDb = response.body.find(blog => blog.title === newBlog.title);
-      expect(newBlogInDb.likes).toBe(123);
+      const authors = response.body.map(r => r.author);
+
+      expect(response.body.length).toBe(helper.initialBlogs.length + 1);
+      expect(authors).toContain('Jean Marc');
+    });
+
+    describe('if incoming blogpost body DOES contain a likes property', () => {
+      test('it sets likes field based on the body definition', async () => {
+        const newBlog = {
+          title: 'foo',
+          author: 'bar',
+          likes: 123,
+          url: 'https://foo.bar'
+        };
+
+        await api
+          .post('/api/blogs')
+          .send(newBlog)
+          .expect(201)
+          .expect('Content-Type', /application\/json/);
+
+        const response = await api.get('/api/blogs');
+        const newBlogInDb = response.body.find(blog => blog.title === newBlog.title);
+        expect(newBlogInDb.likes).toBe(123);
+      });
+    });
+
+    describe('if incoming blogpost body does not contain any likes property', () => {
+      test('it sets likes property to its default value, 0', async () => {
+        const newBlogWithoutLikes = {
+          title: 'baz',
+          author: 'lorem',
+          url: 'https://lorem.ipsum'
+        };
+
+        await api
+          .post('/api/blogs')
+          .send(newBlogWithoutLikes)
+          .expect(201)
+          .expect('Content-Type', /application\/json/);
+
+        const response = await api.get('/api/blogs');
+        const newBlogInDb = response.body.find(blog => blog.title === newBlogWithoutLikes.title);
+        expect(newBlogInDb.likes).toBe(0);
+      });
     });
   });
 
-  describe('if incoming blogpost body does not contain any likes property', () => {
-    test('it sets likes property to its default value, 0', async () => {
-      const newBlogWithoutLikes = {
-        title: 'baz',
-        author: 'lorem',
-        url: 'https://lorem.ipsum'
+  describe('when incoming blogpost has a validation issue', () => {
+    test('it returns a 400 when there is no valid title', async () => {
+      const newBlog = {
+        author: 'Jean Marc',
+        url: 'https://lemonde.fr',
+        likes: 78
       };
 
       await api
         .post('/api/blogs')
-        .send(newBlogWithoutLikes)
-        .expect(201)
-        .expect('Content-Type', /application\/json/);
+        .send(newBlog)
+        .expect(400)
+        .expect({"error": "Blog validation failed: title: Path `title` is required."});
 
       const response = await api.get('/api/blogs');
-      const newBlogInDb = response.body.find(blog => blog.title === newBlogWithoutLikes.title);
-      expect(newBlogInDb.likes).toBe(0);
+      const authors = response.body.map(r => r.author);
+
+      expect(response.body.length).toBe(helper.initialBlogs.length);
+      expect(authors).not.toContain('Jean Marc');
+    });
+
+    test('it returns a 400 when there is no valid url', async () => {
+      const newBlog = {
+        title: 'Le Monde',
+        author: 'Jean Marc',
+        likes: 78
+      };
+
+      await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+        .expect({"error": "Blog validation failed: url: Path `url` is required."});
+
+      const response = await api.get('/api/blogs');
+      const authors = response.body.map(r => r.author);
+
+      expect(response.body.length).toBe(helper.initialBlogs.length);
+      expect(authors).not.toContain('Jean Marc');
     });
   });
 });
