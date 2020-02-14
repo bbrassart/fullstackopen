@@ -51,9 +51,48 @@ describe('#post', () => {
     const authors = response.body.map(r => r.author);
 
     expect(response.body.length).toBe(helper.initialBlogs.length + 1);
-    expect(authors).toContain(
-      'Jean Marc'
-    );
+    expect(authors).toContain('Jean Marc');
+  });
+
+  describe('if incoming blogpost body DOES contain a likes property', () => {
+    test('it sets likes field based on the body definition', async () => {
+      const newBlog = {
+        title: 'foo',
+        author: 'bar',
+        likes: 123,
+        url: 'https://foo.bar'
+      };
+
+      await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/);
+
+      const response = await api.get('/api/blogs');
+      const newBlogInDb = response.body.find(blog => blog.title === newBlog.title);
+      expect(newBlogInDb.likes).toBe(123);
+    });
+  });
+
+  describe('if incoming blogpost body does not contain any likes property', () => {
+    test('it sets likes property to its default value, 0', async () => {
+      const newBlogWithoutLikes = {
+        title: 'baz',
+        author: 'lorem',
+        url: 'https://lorem.ipsum'
+      };
+
+      await api
+        .post('/api/blogs')
+        .send(newBlogWithoutLikes)
+        .expect(201)
+        .expect('Content-Type', /application\/json/);
+
+      const response = await api.get('/api/blogs');
+      const newBlogInDb = response.body.find(blog => blog.title === newBlogWithoutLikes.title);
+      expect(newBlogInDb.likes).toBe(0);
+    });
   });
 });
 
