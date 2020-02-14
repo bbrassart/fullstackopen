@@ -25,10 +25,35 @@ describe('#get', () => {
       .expect('Content-Type', /application\/json/);
   });
 
-  test('each and every contains a single id property, no more __id property', async () => {
+  test('each and every blog contains a single id property, no more __id property', async () => {
     const response = await api.get('/api/blogs');
     expect(response.body[0].id).toBeDefined();
     expect(response.body[0].__id).not.toBeDefined();
+  });
+});
+
+describe('#post', () => {
+  test('a valid blogpost can be added ', async () => {
+    const newBlog = {
+      title: 'Le Monde',
+      author: 'Jean Marc',
+      url: 'https://lemonde.fr',
+      likes: 78
+    };
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+
+    const response = await api.get('/api/blogs');
+    const authors = response.body.map(r => r.author);
+
+    expect(response.body.length).toBe(helper.initialBlogs.length + 1);
+    expect(authors).toContain(
+      'Jean Marc'
+    );
   });
 });
 
