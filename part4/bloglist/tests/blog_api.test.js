@@ -140,6 +140,39 @@ describe('#post', () => {
   });
 });
 
+describe('#put', () => {
+  describe('when blog to be updated is not found', () => {
+    test('it returns a 400 Bad request status', async () => {
+      const malformattedId = 'foobar';
+      await api
+        .put(`/api/blogs/${malformattedId}`)
+        .expect(400)
+        .expect({"error": "malformatted id"})
+    });
+  });
+
+  describe('when blog to be updated is found and exists', () => {
+    test('it returns a 204 and update information as requested', async () => {
+      const newLikesNumber = 898;
+
+      const response = await api.get('/api/blogs');
+      const firstBlog = response.body[0];
+      const { title, id, author, likes } = firstBlog;
+      const blog = { title, author, likes: newLikesNumber };
+
+      await api
+        .put(`/api/blogs/${id}`)
+        .send(blog)
+        .expect(200);
+
+      const newBlogs = await api.get('/api/blogs');
+      const updatedBlog = newBlogs.body.find(blog => blog.id === id);
+      expect(updatedBlog.likes).toEqual(newLikesNumber);
+      expect(updatedBlog.likes).not.toEqual(likes);
+    });
+  });
+});
+
 afterAll(() => {
   mongoose.connection.close()
 });
