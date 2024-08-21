@@ -1,0 +1,130 @@
+Script started on 2024-08-21 12:08:12+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="100" LINES="55"]
+[?2004h]0;baptiste@baptiste-ThinkPad: ~/Documents/dev/fullstackopen/part12-containers-applications-main/script-answers[01;32mbaptiste@baptiste-ThinkPad[00m:[01;34m~/Documents/dev/fullstackopen/part12-containers-applications-main/script-answers[00m$ docker start -i optimistic_banzai 
+[?2004l[?2004h]0;root@d4fa710b6e4c: /root@d4fa710b6e4c:/# apt-get install node
+[?2004lReading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 7%Reading package lists... 7%Reading package lists... 86%Reading package lists... 86%Reading package lists... 87%Reading package lists... 87%Reading package lists... 89%Reading package lists... 89%Reading package lists... 91%Reading package lists... 91%Reading package lists... 92%Reading package lists... 92%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 95%Reading package lists... 95%Reading package lists... 96%Reading package lists... 96%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... 81%Building dependency tree... Done
+Reading state information... 0% Reading state information... 98%Reading state information... Done
+E: Unable to locate package node
+[?2004h]0;root@d4fa710b6e4c: /root@d4fa710b6e4c:/# apt inst    -get install nodeexit[Knano /usr/src/app/index.js exit[Knano /usr/src/app/index.js [4Papt-get -y install nano[9Pupdateexit[Kapt-get update
+[?2004l0% [Working]            Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+0% [Connecting to security.ubuntu.com (91.189.91.81)]                                                     Hit:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+0% [Connecting to security.ubuntu.com (91.189.91.81)]                                                     Hit:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+0% [Connecting to security.ubuntu.com (91.189.91.81)]                                                     0% [Waiting for headers]                        Hit:4 http://security.ubuntu.com/ubuntu noble-security InRelease
+                        0% [Working]0% [Working]0% [Working]20% [Working]             Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 7%Reading package lists... 7%Reading package lists... 86%Reading package lists... 86%Reading package lists... 87%Reading package lists... 87%Reading package lists... 89%Reading package lists... 89%Reading package lists... 91%Reading package lists... 91%Reading package lists... 92%Reading package lists... 92%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 95%Reading package lists... 95%Reading package lists... 96%Reading package lists... 96%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+[?2004h]0;root@d4fa710b6e4c: /root@d4fa710b6e4c:/# apt-get update[6@install node    exit[Knano /usr/src/app/index.js exit[Knano /usr/src/app/index.js [4Papt-get -y install nano    nodejs
+[?2004lReading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 7%Reading package lists... 7%Reading package lists... 86%Reading package lists... 86%Reading package lists... 87%Reading package lists... 87%Reading package lists... 89%Reading package lists... 89%Reading package lists... 91%Reading package lists... 91%Reading package lists... 92%Reading package lists... 92%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 95%Reading package lists... 95%Reading package lists... 96%Reading package lists... 96%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... 78%Building dependency tree... Done
+Reading state information... 0% Reading state information... 98%Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates libbrotli1 libcares2 libicu74 libnghttp2-14 libnode109 libuv1t64 node-acorn
+  node-busboy node-cjs-module-lexer node-undici node-xtend nodejs-doc openssl
+Suggested packages:
+  npm
+The following NEW packages will be installed:
+  ca-certificates libbrotli1 libcares2 libicu74 libnghttp2-14 libnode109 libuv1t64 node-acorn
+  node-busboy node-cjs-module-lexer node-undici node-xtend nodejs nodejs-doc openssl
+0 upgraded, 15 newly installed, 0 to remove and 1 not upgraded.
+Need to get 28.6 MB of archives.
+After this operation, 111 MB of additional disk space will be used.
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.2 [1002 kB]
+0% [1 openssl 14.2 kB/1002 kB 1%]                                 4% [Working]            Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 ca-certificates all 20240203 [159 kB]
+4% [2 ca-certificates 5500 B/159 kB 3%]                                       6% [Waiting for headers]                        Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libicu74 amd64 74.2-1ubuntu3 [10.9 MB]
+6% [3 libicu74 9451 B/10.9 MB 0%]19% [3 libicu74 4596 kB/10.9 MB 42%]32% [3 libicu74 9302 kB/10.9 MB 86%]                                    38% [Working]             Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-14 amd64 1.59.0-1ubuntu0.1 [74.3 kB]
+38% [4 libnghttp2-14 29.4 kB/74.3 kB 40%]                                         39% [Working]             Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 libuv1t64 amd64 1.48.0-1.1build1 [97.3 kB]
+39% [5 libuv1t64 20.4 kB/97.3 kB 21%]                                     41% [Waiting for headers]                         Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 libbrotli1 amd64 1.1.0-2build2 [331 kB]
+41% [6 libbrotli1 53.9 kB/331 kB 16%]                                     43% [Working]             Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 libcares2 amd64 1.27.0-1.0ubuntu1 [73.7 kB]
+43% [7 libcares2 50.6 kB/73.7 kB 69%]                                     45% [Working]             Get:8 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-xtend all 4.0.2-3 [3902 B]
+45% [8 node-xtend 3902 B/3902 B 100%]                                     46% [Working]             Get:9 http://archive.ubuntu.com/ubuntu noble/universe amd64 nodejs amd64 18.19.1+dfsg-6ubuntu5 [306 kB]
+46% [9 nodejs 43.8 kB/306 kB 14%]                                 48% [Working]             Get:10 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-acorn all 8.8.1+ds+~cs25.17.7-2 [115 kB]
+48% [10 node-acorn 20.6 kB/115 kB 18%]                                      50% [Working]             Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-cjs-module-lexer all 1.2.3+dfsg-1 [32.1 kB]
+50% [11 node-cjs-module-lexer 14.9 kB/32.1 kB 47%]                                                  51% [Working]             Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-busboy all 1.6.0+~cs2.6.0-2 [17.3 kB]
+51% [12 node-busboy 17.3 kB/17.3 kB 100%]                                         53% [Working]             Get:13 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-undici all 5.26.3+dfsg1+~cs23.10.12-2 [325 kB]
+53% [13 node-undici 30.5 kB/325 kB 9%]                                      55% [Waiting for headers]                         Get:14 http://archive.ubuntu.com/ubuntu noble/universe amd64 libnode109 amd64 18.19.1+dfsg-6ubuntu5 [11.6 MB]
+55% [14 libnode109 33.2 kB/11.6 MB 0%]68% [14 libnode109 4785 kB/11.6 MB 41%]82% [14 libnode109 9561 kB/11.6 MB 82%]                                       89% [Waiting for headers]                         Get:15 http://archive.ubuntu.com/ubuntu noble/universe amd64 nodejs-doc all 18.19.1+dfsg-6ubuntu5 [3552 kB]
+89% [15 nodejs-doc 49.4 kB/3552 kB 1%]                                      100% [Working]              Fetched 28.6 MB in 3s (8229 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package openssl.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4449 files and directories currently installed.)
+Preparing to unpack .../00-openssl_3.0.13-0ubuntu3.2_amd64.deb ...
+Unpacking openssl (3.0.13-0ubuntu3.2) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../01-ca-certificates_20240203_all.deb ...
+Unpacking ca-certificates (20240203) ...
+Selecting previously unselected package libicu74:amd64.
+Preparing to unpack .../02-libicu74_74.2-1ubuntu3_amd64.deb ...
+Unpacking libicu74:amd64 (74.2-1ubuntu3) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../03-libnghttp2-14_1.59.0-1ubuntu0.1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.59.0-1ubuntu0.1) ...
+Selecting previously unselected package libuv1t64:amd64.
+Preparing to unpack .../04-libuv1t64_1.48.0-1.1build1_amd64.deb ...
+Unpacking libuv1t64:amd64 (1.48.0-1.1build1) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../05-libbrotli1_1.1.0-2build2_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.1.0-2build2) ...
+Selecting previously unselected package libcares2:amd64.
+Preparing to unpack .../06-libcares2_1.27.0-1.0ubuntu1_amd64.deb ...
+Unpacking libcares2:amd64 (1.27.0-1.0ubuntu1) ...
+Selecting previously unselected package node-xtend.
+Preparing to unpack .../07-node-xtend_4.0.2-3_all.deb ...
+Unpacking node-xtend (4.0.2-3) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../08-nodejs_18.19.1+dfsg-6ubuntu5_amd64.deb ...
+Unpacking nodejs (18.19.1+dfsg-6ubuntu5) ...
+Selecting previously unselected package node-acorn.
+Preparing to unpack .../09-node-acorn_8.8.1+ds+~cs25.17.7-2_all.deb ...
+Unpacking node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+Selecting previously unselected package node-cjs-module-lexer.
+Preparing to unpack .../10-node-cjs-module-lexer_1.2.3+dfsg-1_all.deb ...
+Unpacking node-cjs-module-lexer (1.2.3+dfsg-1) ...
+Selecting previously unselected package node-busboy.
+Preparing to unpack .../11-node-busboy_1.6.0+~cs2.6.0-2_all.deb ...
+Unpacking node-busboy (1.6.0+~cs2.6.0-2) ...
+Selecting previously unselected package node-undici.
+Preparing to unpack .../12-node-undici_5.26.3+dfsg1+~cs23.10.12-2_all.deb ...
+Unpacking node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+Selecting previously unselected package libnode109:amd64.
+Preparing to unpack .../13-libnode109_18.19.1+dfsg-6ubuntu5_amd64.deb ...
+Unpacking libnode109:amd64 (18.19.1+dfsg-6ubuntu5) ...
+Selecting previously unselected package nodejs-doc.
+Preparing to unpack .../14-nodejs-doc_18.19.1+dfsg-6ubuntu5_all.deb ...
+Unpacking nodejs-doc (18.19.1+dfsg-6ubuntu5) ...
+Setting up libbrotli1:amd64 (1.1.0-2build2) ...
+Setting up libuv1t64:amd64 (1.48.0-1.1build1) ...
+Setting up libnghttp2-14:amd64 (1.59.0-1ubuntu0.1) ...
+Setting up node-cjs-module-lexer (1.2.3+dfsg-1) ...
+Setting up libcares2:amd64 (1.27.0-1.0ubuntu1) ...
+Setting up nodejs-doc (18.19.1+dfsg-6ubuntu5) ...
+Setting up libicu74:amd64 (74.2-1ubuntu3) ...
+Setting up node-xtend (4.0.2-3) ...
+Setting up openssl (3.0.13-0ubuntu3.2) ...
+Setting up node-busboy (1.6.0+~cs2.6.0-2) ...
+Setting up ca-certificates (20240203) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+146 added, 0 removed; done.
+Setting up node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+Setting up node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+Setting up libnode109:amd64 (18.19.1+dfsg-6ubuntu5) ...
+Setting up nodejs (18.19.1+dfsg-6ubuntu5) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/js.1.gz because associated file /usr/share/man/man1/nodejs.1.gz (of link group js) doesn't exist
+Processing triggers for libc-bin (2.39-0ubuntu8.2) ...
+Processing triggers for ca-certificates (20240203) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+[?2004h]0;root@d4fa710b6e4c: /root@d4fa710b6e4c:/# node /usr/src/app/exerc     index.js 
+[?2004lHello World
+[?2004h]0;root@d4fa710b6e4c: /root@d4fa710b6e4c:/# [Kexit
+[?2004lexit
+e[?2004h]0;baptiste@baptiste-ThinkPad: ~/Documents/dev/fullstackopen/part12-containers-applications-main/script-answers[01;32mbaptiste@baptiste-ThinkPad[00m:[01;34m~/Documents/dev/fullstackopen/part12-containers-applications-main/script-answers[00m$ exit
+[?2004lexit
+
+Script done on 2024-08-21 12:11:19+02:00 [COMMAND_EXIT_CODE="0"]
